@@ -1,0 +1,537 @@
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial, sans-serif;
+}
+
+body{
+color:white;
+overflow-x:hidden;
+font-size: 16px; /* Base size, scale with rem */
+}
+
+/* background image */
+
+.background{
+position:fixed;
+width:100%;
+height:100%;
+top:0;
+left:0;
+background:url("images/Nyxvoid\ Cover.png") center/cover no-repeat;
+z-index:-2;
+filter:brightness(0.35);
+}
+
+/* animated particles */
+
+#particles{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+z-index:-1;
+}
+
+/* navbar */
+
+nav{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 40px;
+background:rgba(0,0,0,0.6);
+backdrop-filter:blur(6px);
+flex-direction: column; /* Stack logo and links vertically on small screens */
+padding: 10px 20px;
+animation: navSlideDown 0.5s ease-out;
+}
+
+@keyframes navSlideDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hamburger {
+  display: none; /* Hidden by default */
+  background: none;
+  border: none;
+  color: white;
+  font-size: 28px;
+  cursor: pointer;
+  padding: 8px;
+  transition: transform 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.hamburger:active {
+  transform: scale(0.9);
+}
+
+.nav-links {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 200px;
+  height: auto;
+  background: rgba(0,0,0,0.9);
+  justify-content: flex-start;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+  transform: translateY(-100%);
+  opacity: 0;
+  visibility: hidden;
+  transition: transform 0.35s cubic-bezier(0.68, -0.55, 0.265, 1.55), opacity 0.35s ease, visibility 0.35s;
+  z-index: 1000;
+  gap: 0;
+  margin-top: 10px;
+}
+
+.nav-links.active {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 8px;
+    transition: transform 0.2s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.close-btn:active {
+    transform: scale(0.85);
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    margin: 8px 0;
+    font-size: 16px;
+    padding: 8px 0;
+    display: block;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.nav-links a:active {
+    color: #9d6cff;
+    transform: translateX(-5px);
+}
+
+.logo-area{
+display:flex;
+align-items:center;
+gap:10px;
+animation: fadeInLeft 0.6s ease-out 0.2s both;
+}
+
+@keyframes fadeInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.site-logo{
+width:40px; /* Smaller on mobile */
+}
+
+nav a{
+color:white;
+text-decoration:none;
+margin-left:20px;
+}
+
+nav a:hover{
+color:#9d6cff;
+}
+
+.float-up {
+    animation: floatUp 0.5s ease-in-out;
+}
+
+@keyframes floatUp {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-10px); }
+}
+
+/* hero */
+
+.hero{
+text-align:center;
+padding: 80px 10px; /* Reduce padding */
+}
+
+.hero-logo{
+width: 120px; /* Smaller on mobile */
+margin-bottom:20px;
+border-radius: 50%;
+}
+
+.hero h1{
+font-size: 2.5rem; /* Use rem for scaling */
+}
+
+/* Buttons: Stack vertically */
+.social-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+
+.btn{
+padding:10px 20px;
+margin:10px;
+border-radius:6px;
+text-decoration:none;
+color:white;
+}
+
+.youtube{background:#ff0000;}
+.tiktok{background:#61f7e3;}
+.facebook{background:#1877f2;}
+
+/* sections */
+
+.section{
+padding:80px 20px;
+text-align:center;
+}
+
+/* Stats: Wrap and scale */
+
+.stats-container{
+display:flex;
+justify-content:center;
+gap:40px;
+margin-top:30px;
+flex-wrap:wrap;
+flex-direction: column;
+gap: 20px;
+}
+
+.stat{
+background:rgba(0,0,0,0.6);
+padding:20px;
+border-radius:10px;
+width:200px;
+display: flex;
+flex-direction: column;
+align-items: center;
+text-align: center;
+gap: 10px;
+}
+
+.stat i{
+font-size:30px;
+}
+
+/* updates */
+/* Updates: Horizontal scroll remains, but ensure cards fit */
+
+.updates-container{
+display:flex;
+gap:20px;
+overflow-x:auto;
+padding:20px;
+}
+
+.update-card{
+background:rgba(0,0,0,0.6);
+padding:20px;
+border-radius:10px;
+min-width: 250px;
+position:relative;
+}
+
+.update-card img{
+width:100%;
+border-radius:6px;
+margin-top:10px;
+}
+
+.update-close{
+position:absolute;
+top:8px;
+right:10px;
+cursor:pointer;
+}
+
+/* SOCIAL LINKS */
+
+.social-links{
+margin-top:25px;
+display:flex;
+justify-content:center;
+gap:15px;
+flex-wrap:wrap;
+}
+
+.social-links a{
+width:50px;
+height:50px;
+min-width:50px;
+min-height:50px;
+display:flex;
+align-items:center;
+justify-content:center;
+border-radius:50%;
+font-size:25px;
+color:white;
+transition:0.3s;
+line-height:1;
+flex-shrink:0;
+box-sizing:border-box;
+}
+
+/* Facebook */
+
+.facebook{
+background:#1877F2;
+}
+
+/* TikTok */
+
+.tiktok{
+background: #5ae9e2;
+color: #FE2C55;
+
+}
+
+/* Instagram */
+
+.instagram{
+background:linear-gradient(
+45deg,
+#feda75,
+#fa7e1e,
+#d62976,
+#962fbf,
+#4f5bd5
+);
+}
+
+/* YouTube */
+
+.youtube{
+background:#FF0000;
+}
+
+/* WhatsApp */
+
+.whatsapp{
+background:#25D366;
+}
+
+.social-links a:hover{
+transform:scale(1.15);
+}
+
+/* form */
+
+form{
+max-width:400px;
+margin:auto;
+display:flex;
+flex-direction:column;
+gap:10px;
+width: 100%;
+}
+
+input,textarea{
+padding:10px;
+border:none;
+border-radius:5px;
+}
+
+button{
+background:#7a3cff;
+color:white;
+border:none;
+padding:10px;
+cursor:pointer;
+border-radius: 5px;
+}
+
+/* footer */
+
+footer{
+text-align:center;
+padding:20px;
+background:rgba(0,0,0,0.7);
+}
+
+/* Add to existing styles */
+
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Mobile-specific: Trigger on scroll */
+@media (max-width: 768px) {
+  .fade-in {
+    /* Ensure smooth performance */
+    will-change: opacity, transform;
+  }
+  .hamburger {
+      display: block;
+  }
+  nav {
+      flex-direction: row;
+      justify-content: space-between;
+  }
+  .stat {
+      flex: 1;
+      padding: 15px;
+  }
+  .stat i {
+      font-size: 24px;
+  }
+  .stat h3 {
+      font-size: 1.2rem;
+  }
+  .stat p {
+      font-size: 0.9rem;
+  }
+  .stats-container {
+      flex-direction: row;
+      gap: 10px;
+  }
+}
+
+/* Tablet and up */
+@media (min-width: 768px) {
+    nav {
+        flex-direction: row;
+        padding: 20px 40px;
+    }
+    
+    .nav-links {
+        position: static;
+        width: auto;
+        height: auto;
+        background: none;
+        flex-direction: row;
+        padding: 0;
+        margin-top: 0;
+        right: auto;
+        transform: none;
+        opacity: 1;
+        visibility: visible;
+        gap: 30px;
+    }
+    
+    .nav-links a {
+        margin: 0;
+        padding: 5px 10px;
+        position: relative;
+        animation: fadeInRight 0.6s ease-out forwards;
+    }
+    
+    .nav-links a:nth-child(1) { animation-delay: 0.3s; }
+    .nav-links a:nth-child(2) { animation-delay: 0.4s; }
+    .nav-links a:nth-child(3) { animation-delay: 0.5s; }
+    .nav-links a:nth-child(4) { animation-delay: 0.6s; }
+    .nav-links a:nth-child(5) { animation-delay: 0.7s; }
+    
+    .nav-links a:hover {
+        color: #9d6cff;
+        border-bottom: 2px solid #9d6cff;
+        padding-bottom: 3px;
+    }
+    
+    .nav-links a:active {
+        transform: translateY(-3px);
+    }
+    
+    @keyframes fadeInRight {
+      0% {
+        opacity: 0;
+        transform: translateX(30px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    
+    .close-btn {
+        display: none;
+    }
+    
+    .hamburger {
+        animation: fadeInRight 0.6s ease-out 0.8s both;
+    }
+    
+    .hamburger {
+        display: none;
+    }
+    
+    .site-logo {
+        width: 50px;
+    }
+    
+    .hero {
+        padding: 110px 20px;
+    }
+    
+    .hero h1 {
+        font-size: 4rem;
+    }
+    
+    .hero-logo {
+        width: 150px;
+    }
+    
+    .social-buttons {
+        flex-direction: row;
+        justify-content: center;
+    }
+    
+    .stats-container {
+        flex-direction: row;
+    }
+    
+    .stat {
+        width: 200px;
+    }
+}
+
+@media (min-width: 1024px) { /* Desktop */
+    /* Fine-tune if needed, e.g., larger gaps */
+    .stats-container {
+        gap: 40px;
+    }
+}
