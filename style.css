@@ -400,7 +400,7 @@ background:rgba(0,0,0,0.7);
 }
 
 /* Arrow up */
-#backToTop {
+backToTop {
   display: none;
   position: fixed;
   bottom: 30px;
@@ -416,7 +416,7 @@ background:rgba(0,0,0,0.7);
   border-radius: 50%;
 }
 
-#backToTop:hover {
+backToTop:hover {
   background-color: #555;
 }
 
