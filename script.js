@@ -98,7 +98,6 @@ const observer = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-<script>
 let mybutton = document.getElementById("backToTop");
 
 window.onscroll = function() {
@@ -112,4 +111,3 @@ window.onscroll = function() {
 function topFunction() {
   window.scrollTo({top: 0, behavior: 'smooth'});
 }
-</script>
