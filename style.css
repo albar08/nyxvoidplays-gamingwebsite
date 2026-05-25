@@ -352,6 +352,24 @@ background:#25D366;
 transform:scale(1.15);
 }
 
+/* Remove underline on social links and social buttons */
+.social-links a,
+.social-links a:link,
+.social-links a:visited,
+.social-buttons .btn,
+.social-buttons .btn:link,
+.social-buttons .btn:visited {
+    text-decoration: none;
+}
+
+.social-links a:hover,
+.social-links a:focus,
+.social-buttons .btn:hover,
+.social-buttons .btn:focus {
+    text-decoration: none;
+    outline: none;
+}
+
 /* form */
 
 form{
@@ -397,6 +415,117 @@ background:rgba(0,0,0,0.7);
 .fade-in.visible {
     opacity: 1;
     transform: translateY(0);
+}
+
+/* Theme toggle */
+.theme-toggle{
+    background:transparent;
+    border:none;
+    color:white;
+    font-size:22px;
+    cursor:pointer;
+    margin-left:10px;
+}
+
+/* Carousel */
+.carousel{
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    margin-top:20px;
+}
+.carousel-track{
+    display:flex;
+    gap:16px;
+    overflow-x:auto;
+    width:100%;
+    max-width:900px;
+    scroll-behavior:smooth;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+}
+.carousel-card{
+    min-width:100%;
+    max-width:780px;
+    flex:0 0 100%;
+    background:rgba(0,0,0,0.6);
+    border-radius:8px;
+    padding:12px;
+    text-align:left;
+    scroll-snap-align: start;
+}
+.carousel-card .card-desc{margin-top:8px;font-size:0.95rem;color:#ddd}
+.carousel-card .carousel-join{display:inline-block;margin-top:10px}
+
+/* Discord icon fallback styling */
+.discord-card{display:flex;flex-direction:column;align-items:center;gap:8px}
+.discord-icon{width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,#5865F2,#7289DA);display:flex;align-items:center;justify-content:center;color:white;font-size:36px}
+.discord-icon i{line-height:1}
+.carousel-card img{max-height:180px;object-fit:cover}
+.carousel-card img{width:100%;border-radius:6px;display:block}
+.carousel-card h3{margin-top:8px;font-size:1.05rem}
+.carousel-btn{background:rgba(0,0,0,0.6);border:none;color:white;font-size:28px;padding:8px 12px;cursor:pointer;border-radius:6px}
+.carousel-btn:active{transform:scale(0.97)}
+
+/* Stream embed responsive */
+.stream-embed{display:flex;justify-content:center}
+.stream-embed iframe{max-width:100%;width:640px;height:360px;border-radius:8px}
+
+/* Community button */
+.btn.discord{background:#5865F2;color:white;padding:8px 12px;border-radius:6px;text-decoration:none;display:inline-block}
+
+.community-section p{
+  max-width:720px;
+  margin:0 auto 16px;
+  line-height:1.6;
+}
+
+.community-section .btn.discord{
+  margin-top:10px;
+}
+
+/* Ensure carousel content doesn't overflow neighboring sections */
+.carousel{padding:8px 12px}
+.carousel-track{box-sizing:border-box}
+
+/* Light theme (optional) - applied on the HTML element as `html.light-theme` */
+html.light-theme, html.light-theme body {
+    background: #f6f7fb;
+    color: #111;
+}
+html.light-theme nav{
+    background: rgba(255,255,255,0.9);
+    color: #111;
+}
+html.light-theme .nav-links{background: rgba(255,255,255,0.95);}
+html.light-theme .section{color:#111}
+html.light-theme .carousel-card{background:rgba(255,255,255,0.95);color:#111}
+html.light-theme .stat{background:rgba(255,255,255,0.95);color:#111}
+html.light-theme .update-card{background:rgba(255,255,255,0.95);color:#111}
+html.light-theme .btn{color:#111}
+
+/* Responsive tweaks */
+@media(min-width:768px){
+    .nav-links{position:static;transform:none;opacity:1;visibility:visible;background:transparent;padding:0;height:auto}
+    nav{flex-direction:row}
+    .hamburger{display:none}
+    .nav-links a{margin-left:20px}
+    .stats-container{flex-direction:row}
+    .social-buttons{flex-direction:row}
+    .hero{padding:100px 20px}
+}
+
+@media(max-width:767px){
+    .hamburger{display:block}
+    .site-logo{width:36px}
+    .hero-logo{width:100px}
+    .carousel-track{width:100%}
+    .carousel-card{min-width:100%}
+    .carousel-btn{font-size:22px;padding:6px 10px}
+    .stream-embed iframe{height:200px;width:100%}
+    .theme-toggle{font-size:20px}
 }
 
 /* Mobile-specific: Trigger on scroll */
