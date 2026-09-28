@@ -1,0 +1,41 @@
+{
+  "stats": {
+    "youtube": 3,
+    "tiktok": 689,
+    "facebook": 1500
+  },
+  "featuredGames": [
+    { "title": "Shadow Assassin", "image": "images/shadow-assassin.jpeg", "link": "#" },
+    { "title": "Cover Montage", "image": "images/nyxvoid-cover.png", "link": "#" },
+    { "title": "Gameplay Highlight", "image": "images/shadow-assassin.jpeg", "link": "#" },
+    { "title": "Ranked Clutch", "image": "images/nyxvoid-logo.png", "link": "#" },
+    { "title": "New Hero Build", "image": "images/facebook-post.png", "link": "#" }
+  ],
+  "updates": [
+    {
+      "title": "🔥 Epic Ranked Win",
+      "text": "Clutched the final fight using Shadow Assassin.",
+      "image": "images/shadow-assassin.jpeg"
+    },
+    {
+      "title": "🎥 Gameplay Highlight",
+      "text": "Watch this insane Honor of Kings outplay.",
+      "video": "https://www.youtube.com/embed/mJHB6Tpxc0c"
+    },
+    {
+      "title": "💜 Thank You",
+      "text": "Thanks for supporting NyxVoid Plays!"
+    }
+  ],
+  "schedule": [
+    { "day": "Monday", "time": "TBD" },
+    { "day": "Wednesday", "time": "TBD" },
+    { "day": "Friday", "time": "TBD" },
+    { "day": "Saturday", "time": "TBD" }
+  ],
+  "testimonials": [
+    { "quote": "Replace this with a real fan comment or Discord message you'd like to feature.", "author": "Sample Viewer" },
+    { "quote": "Replace this with a real fan comment or Discord message you'd like to feature.", "author": "Sample Viewer" },
+    { "quote": "Replace this with a real fan comment or Discord message you'd like to feature.", "author": "Sample Viewer" }
+  ]
+}
