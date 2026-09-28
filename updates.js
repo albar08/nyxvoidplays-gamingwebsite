@@ -1,25 +1,6 @@
-const updates = [
-
-{
-title:"🔥 Epic Ranked Win",
-text:"Clutched the final fight using Shadow Assassin.",
-image:"images/shadow_assassin.jpeg"
-},
-
-{
-title:"🎥 Gameplay Highlight",
-text:"Watch this insane Honor of Kings outplay.",
-video:"https://www.youtube.com/embed/mJHB6Tpxc0c"
-},
-
-{
-title:"💜 Thank You",
-text:"Thanks for supporting NyxVoid Plays!"
-}
-
-];
-
 const container=document.getElementById("updatesContainer");
+
+function renderUpdates(updates){
 
 updates.forEach(update=>{
 
@@ -48,3 +29,12 @@ src="${update.video}" allowfullscreen></iframe>`;
 container.appendChild(card);
 
 });
+
+}
+
+fetch('data/content.json')
+.then(res=>res.json())
+.then(data=>{
+if(data.updates) renderUpdates(data.updates);
+})
+.catch(err=>console.error('Failed to load updates:', err));

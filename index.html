@@ -4,9 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NyxVoid Plays</title>
+    <meta name="description" content="NyxVoid Plays — Honor of Kings gameplay, ranked battles, and creator journey. Watch highlights and follow on YouTube, TikTok, and Facebook.">
+    <link rel="icon" type="image/png" href="images/nyxvoid-logo.png">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="NyxVoid Plays">
+    <meta property="og:description" content="Honor of Kings gameplay, ranked battles, and creator journey.">
+    <meta property="og:url" content="https://nyxvoidplays-gamingwebsite.netlify.app/">
+    <meta property="og:image" content="https://nyxvoidplays-gamingwebsite.netlify.app/images/nyxvoid-cover.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="NyxVoid Plays">
+    <meta name="twitter:description" content="Honor of Kings gameplay, ranked battles, and creator journey.">
+    <meta name="twitter:image" content="https://nyxvoidplays-gamingwebsite.netlify.app/images/nyxvoid-cover.png">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/fontawesome.min.css">
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/brands.min.css">
   </head>
   <body>
     <!-- Background Image -->
@@ -16,7 +29,7 @@
     <!-- NAVBAR -->
     <nav>
       <div class="logo-area">
-        <img src="images/NyxVoid Plays New logo.png" class="site-logo">
+        <img src="images/nyxvoid-plays-new-logo.png" class="site-logo">
         <span>NyxVoid Plays</span>
       </div>
         <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme">🌓</button>
@@ -25,6 +38,7 @@
         <button class="close-btn">×</button>
         <a href="#home">Home</a>
         <a href="#updates">Updates</a>
+        <a href="#schedule">Schedule</a>
         <a href="#stats">Stats</a>
         <a href="#about">About</a>
         <a href="#contact">Support</a>
@@ -32,17 +46,17 @@
     </nav>
     <!-- HERO -->
     <section id="home" class="hero">
-      <img src="images/NyxVoid Plays New logo.png" class="hero-logo">
+      <img src="images/nyxvoid-plays-new-logo.png" class="hero-logo">
       <h1>NyxVoid Plays</h1>
         <p>Honor of Kings Gameplay • Ranked Battles • Creator Journey</p>
       <div class="social-buttons">
-        <a href="https://youtube.com/@philipinegamer0533" class="btn youtube">
+        <a href="https://youtube.com/@philipinegamer0533" class="btn youtube" data-platform="youtube">
         <i class="fab fa-youtube"></i> YouTube
         </a>
-        <a href="https://tiktok.com/@nyxvoidplays" class="btn tiktok">
+        <a href="https://tiktok.com/@nyxvoidplays" class="btn tiktok" data-platform="tiktok">
         <i class="fab fa-tiktok"></i> TikTok
         </a>
-        <a href="https://www.facebook.com/profile.php?id=61585765280956" class="btn facebook">
+        <a href="https://www.facebook.com/profile.php?id=61585765280956" class="btn facebook" data-platform="facebook">
         <i class="fab fa-facebook"></i> Facebook
         </a>
       </div>
@@ -55,6 +69,8 @@
         <div class="carousel-track" id="carouselTrack"></div>
         <button class="carousel-btn next" aria-label="Next">›</button>
       </div>
+      <h3 class="subsection-title">All Highlights</h3>
+      <div id="highlightsGrid" class="highlights-grid"></div>
     </section>
     <!-- CREATOR STATS -->
     <section id="stats" class="section">
@@ -83,13 +99,19 @@
       <h2>Latest Updates</h2>
       <div id="updatesContainer" class="updates-container"></div>
     </section>
+    <!-- SCHEDULE -->
+    <section id="schedule" class="section">
+      <h2>Stream Schedule</h2>
+      <p class="schedule-note">Times are subject to change — follow the socials above for live announcements.</p>
+      <div id="scheduleContainer" class="schedule-list"></div>
+    </section>
     <!-- STREAM -->
     <section id="stream" class="section">
-      <h2>Live Stream</h2>
+      <h2>Featured Video</h2>
       <div class="stream-embed">
         <iframe id="liveEmbed" width="560" height="315"
           src="https://www.youtube.com/embed/mJHB6Tpxc0c"
-          title="Live stream" frameborder="0" allowfullscreen></iframe>
+          title="Featured video" frameborder="0" allowfullscreen></iframe>
       </div>
     </section>
 
@@ -101,43 +123,60 @@
         hero builds, and epic gaming moments with the community.
       </p>
       <div class="social-links">
-        <a href="https://www.facebook.com/profile.php?id=61585765280956" class="facebook">
+        <a href="https://www.facebook.com/profile.php?id=61585765280956" class="facebook" aria-label="Facebook" data-platform="facebook">
         <i class="fab fa-facebook-f"></i>
         </a>
-        <a href="https://tiktok.com/@nyxvoidplays" class="tiktok">
+        <a href="https://tiktok.com/@nyxvoidplays" class="tiktok" aria-label="TikTok" data-platform="tiktok">
         <i class="fab fa-tiktok"></i>
         </a>
-        <a href="https://www.instagram.com/nyxvoidplays/" class="instagram">
+        <a href="https://www.instagram.com/nyxvoidplays/" class="instagram" aria-label="Instagram" data-platform="instagram">
         <i class="fab fa-instagram"></i>
         </a>
-        <a href="https://www.youtube.com/@philipinegamer0533" class="youtube">
+        <a href="https://www.youtube.com/@philipinegamer0533" class="youtube" aria-label="YouTube" data-platform="youtube">
         <i class="fab fa-youtube"></i>
         </a>
-        <a href="https://wa.me/+639461668759" class="whatsapp">
+        <a href="https://wa.me/+639461668759" class="whatsapp" aria-label="WhatsApp" data-platform="whatsapp">
         <i class="fab fa-whatsapp"></i>
         </a>
       </div>
+    </section>
+
+    <!-- SHOUTOUTS -->
+    <section id="shoutouts" class="section">
+      <h2>Shoutouts</h2>
+      <p class="schedule-note">Sample layout — swap these for real fan comments or Discord messages.</p>
+      <div id="testimonialsGrid" class="testimonials-grid"></div>
     </section>
 
     <!-- COMMUNITY -->
     <section id="community" class="section community-section">
       <h2>Community</h2>
       <p>Join our Discord to chat, see updates, and connect with other fans.</p>
-      <a href="https://discord.gg/" class="btn discord" target="_blank" rel="noopener">Join Discord</a>
+      <button class="btn discord" disabled aria-disabled="true" title="Discord invite coming soon">Discord — Coming Soon</button>
     </section>
-    
+
+    <!-- NEWSLETTER -->
+    <section id="newsletter" class="section">
+      <h2>Stay Updated</h2>
+      <p class="schedule-note">Get an email when there's a new highlight or announcement.</p>
+      <form name="newsletter" method="POST" netlify class="newsletter-form">
+        <input type="email" name="email" placeholder="Your Email" required>
+        <button type="submit">Subscribe</button>
+      </form>
+    </section>
+
     <!-- CONTACT -->
     <section id="contact" class="section">
       <h2>Support</h2>
-      <form name="contact" netlify>
-        <input type="text" placeholder="Your Name" required>
-        <input type="email" placeholder="Your Email" required>
-        <textarea placeholder="Message"></textarea>
+      <form name="contact" method="POST" netlify>
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <textarea name="message" placeholder="Message"></textarea>
         <button type="submit">Send Message</button>
       </form>
     </section>
     <footer>
-    <p>© 2025 NyxVoid Plays</p>
+    <p>© <span id="copyrightYear">2025</span> NyxVoid Plays</p>
     </footer>
     <script src="updates.js"></script>
     <script src="script.js"></script>

@@ -98,16 +98,8 @@ const observer = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-/* Featured games carousel */
-const featuredGames = [
-    { title: "Shadow Assassin", image: "images/shadow_assassin.jpeg", link: "#" },
-    { title: "Cover Montage", image: "images/Nyxvoid Cover.png", link: "#" },
-    { title: "Gameplay Highlight", image: "images/shadow_assassin.jpeg", link: "#" },
-    { title: "Ranked Clutch", image: "images/nyxvoid logo.png", link: "#" },
-    { title: "New Hero Build", image: "images/facebook post.png", link: "#" }
-];
-
-function renderCarousel(){
+/* Site content: stats, featured games, schedule, testimonials */
+function renderCarousel(featuredGames){
     const track = document.getElementById('carouselTrack');
     if(!track) return;
     featuredGames.forEach(g=>{
@@ -119,7 +111,64 @@ function renderCarousel(){
     });
 }
 
-renderCarousel();
+function renderHighlightsGrid(featuredGames){
+    const grid = document.getElementById('highlightsGrid');
+    if(!grid) return;
+    featuredGames.forEach(g=>{
+        const card = document.createElement('div');
+        card.className = 'highlight-card fade-in';
+        card.innerHTML = `<a href="${g.link}" aria-label="${g.title}"><img src="${g.image}" alt="${g.title}"><h3>${g.title}</h3></a>`;
+        grid.appendChild(card);
+        observer.observe(card);
+    });
+}
+
+function renderSchedule(schedule){
+    const container = document.getElementById('scheduleContainer');
+    if(!container || !schedule) return;
+    schedule.forEach(item=>{
+        const row = document.createElement('div');
+        row.className = 'schedule-item fade-in';
+        row.innerHTML = `<span class="schedule-day">${item.day}</span><span class="schedule-time">${item.time}</span>`;
+        container.appendChild(row);
+        observer.observe(row);
+    });
+}
+
+function renderTestimonials(testimonials){
+    const grid = document.getElementById('testimonialsGrid');
+    if(!grid || !testimonials) return;
+    testimonials.forEach(t=>{
+        const card = document.createElement('div');
+        card.className = 'testimonial-card fade-in';
+        card.innerHTML = `<p class="testimonial-quote">“${t.quote}”</p><p class="testimonial-author">— ${t.author}</p>`;
+        grid.appendChild(card);
+        observer.observe(card);
+    });
+}
+
+function applyStats(stats){
+    if(!stats) return;
+    const yt = document.getElementById('ytCount');
+    const tt = document.getElementById('ttCount');
+    const fb = document.getElementById('fbCount');
+    if(yt && stats.youtube != null) yt.textContent = stats.youtube;
+    if(tt && stats.tiktok != null) tt.textContent = stats.tiktok;
+    if(fb && stats.facebook != null) fb.textContent = stats.facebook;
+}
+
+fetch('data/content.json')
+    .then(res => res.json())
+    .then(data => {
+        if(data.featuredGames){
+            renderCarousel(data.featuredGames);
+            renderHighlightsGrid(data.featuredGames);
+        }
+        renderSchedule(data.schedule);
+        renderTestimonials(data.testimonials);
+        applyStats(data.stats);
+    })
+    .catch(err => console.error('Failed to load site content:', err));
 
 const track = document.getElementById('carouselTrack');
 const prevBtn = document.querySelector('.carousel-btn.prev');
@@ -195,3 +244,22 @@ if(themeToggle){
         themeToggle.textContent = next === 'light' ? '🌙' : '🌓';
     });
 }
+
+/* Footer year */
+const copyrightYear = document.getElementById('copyrightYear');
+if(copyrightYear){
+    copyrightYear.textContent = new Date().getFullYear();
+}
+
+/* Social click tracking (fire-and-forget) */
+document.querySelectorAll('[data-platform]').forEach(link=>{
+    link.addEventListener('click', ()=>{
+        const platform = link.getAttribute('data-platform');
+        const payload = JSON.stringify({ platform });
+        if(navigator.sendBeacon){
+            navigator.sendBeacon('/.netlify/functions/track-click', new Blob([payload], { type: 'application/json' }));
+        } else {
+            fetch('/.netlify/functions/track-click', { method: 'POST', body: payload, keepalive: true }).catch(()=>{});
+        }
+    });
+});
