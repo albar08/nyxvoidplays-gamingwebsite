@@ -5,27 +5,26 @@
     "facebook": 1500
   },
   "featuredGames": [
-    { "title": "Shadow Assassin", "image": "images/shadow-assassin.jpeg", "link": "#" },
-    { "title": "Cover Montage", "image": "images/nyxvoid-cover.png", "link": "#" },
-    { "title": "Gameplay Highlight", "image": "images/shadow-assassin.jpeg", "link": "#" },
-    { "title": "Ranked Clutch", "image": "images/nyxvoid-logo.png", "link": "#" },
-    { "title": "New Hero Build", "image": "images/facebook-post.png", "link": "#" }
+    { "title": "Eudora Thumbnail", "image": "images/update/thumbnail/EudoraThumbnail.png", "link": "#" },
+    { "title": "Shadow Assassin", "image": "images/update/shadow-assassin.jpeg", "link": "#" },
+    { "title": "Cover Montage", "image": "images/update/nyxvoid-cover.png", "link": "#" },
+    { "title": "NyxVoid Logo", "image": "images/update/nyxvoid-logo.png", "link": "#" },
+    { "title": "Facebook Post", "image": "images/update/facebook-post.png", "link": "#" }
   ],
   "updates": [
-    {
-      "title": "🔥 Epic Ranked Win",
-      "text": "Clutched the final fight using Shadow Assassin.",
-      "image": ""
-    },
-    {
-      "title": "🎥 Gameplay Highlight",
-      "text": "Watch this insane Mobile Legend: Bangbang outplay.",
-      "video": "https://youtu.be/nQHnx7mB57c"
-    },
-    {
-      "title": "💜 Thank You",
-      "text": "Thanks for supporting NyxVoid Plays!"
-    }
+    { "title": "Eudora Hide In the Bush", "text": "Eudora lurking in the bush for the perfect ambush.", "video": "videos/eudora-hide-in-the-bush.mp4", "image": "images/update/thumbnail/EudoraThumbnail.png" },
+    { "title": "The Legendary Eudora", "text": "A legendary Eudora performance.", "video": "videos/the-legendary-eudora.mp4", "image": "images/update/thumbnail/EudoraThumbnail.png" },
+    { "title": "Legendary Eu", "text": "Legendary plays with Eudora.", "video": "videos/legendary-eu.mp4", "image": "images/update/thumbnail/EudoraThumbnail.png" },
+    { "title": "Triple Kill Eudora Unpredicted", "text": "An unpredictable triple kill with Eudora.", "video": "videos/triple-kill-eudora-unpredicted.mp4", "image": "images/update/thumbnail/EudoraThumbnail.png" },
+    { "title": "Chang'e Legendary Performance", "text": "A legendary performance with Chang'e.", "video": "videos/chang-e-legendary-performance.mp4", "image": "images/update/thumbnail/EudoraThumbnail.png" },
+    { "title": "Brilliant Control By Zetian (x4)", "text": "Brilliant crowd control by Zetian.", "video": "videos/brilliant-control-by-zetian-x4.mp4", "image": "images/update/thumbnail/EudoraThumbnail.png" },
+    { "title": "Brilliant Control By Zetian (x4) 2", "text": "Another brilliant crowd control play by Zetian.", "video": "videos/brlliant-control-by-zetian-x4.mp4", "image": "images/update/thumbnail/EudoraThumbnail.png" },
+    { "title": "Zetian Flawless Control By Her CC", "text": "Flawless crowd control by Zetian.", "video": "videos/zetian-flawless-control-by-her-cc.mp4", "image": "images/update/thumbnail/EudoraThumbnail.png" },
+    { "title": "Zetian Superb Control Action", "text": "Superb control action by Zetian.", "video": "videos/zetian-suberb-control-action.mp4", "image": "images/update/thumbnail/EudoraThumbnail.png" },
+    { "title": "Hanabi in The House", "text": "Hanabi dominating in the house.", "video": "videos/hanabi-in-the-house.mp4", "image": "images/update/thumbnail/EudoraThumbnail.png" },
+    { "title": "Miya Gameplay", "text": "Miya gameplay highlights.", "video": "videos/miya-gameplay.mp4", "image": "images/update/thumbnail/EudoraThumbnail.png" },
+    { "title": "Bonana Lengendary Action", "text": "Bonana with legendary action.", "video": "videos/bonana-lengendary-action.mp4", "image": "images/update/thumbnail/EudoraThumbnail.png" },
+    { "title": "Bonana Strugles", "text": "Bonana struggling through a tough match.", "video": "videos/bonana-strugles.mp4", "image": "images/update/thumbnail/EudoraThumbnail.png" }
   ],
   "schedule": [
     { "day": "Monday", "time": "TBD" },

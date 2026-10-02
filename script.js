@@ -66,8 +66,9 @@ navLinks.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', toggleMenu);
 });
 
-// Close menu when clicking outside
+// Close menu when clicking outside (only when the menu is actually open)
 document.addEventListener('click', (e) => {
+    if (!navLinks.classList.contains('active')) return;
     if (!e.target.closest('nav')) {
         navLinks.classList.remove('active');
     }
@@ -81,7 +82,19 @@ window.addEventListener('resize', () => {
 });
 
 document.querySelectorAll('nav a').forEach(link => {
-    link.addEventListener('click', function() {
+    link.addEventListener('click', function(e) {
+        const href = this.getAttribute('href') || '';
+        if(href.startsWith('#')){
+            e.preventDefault();
+            const target = document.querySelector(href);
+            if(target){
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+            // update the hash without causing a jump/reload
+            if(history.replaceState){
+                history.replaceState(null, '', href);
+            }
+        }
         this.classList.add('float-up');
     });
 });
@@ -112,15 +125,94 @@ function renderCarousel(featuredGames){
 }
 
 function renderHighlightsGrid(featuredGames){
-    const grid = document.getElementById('highlightsGrid');
-    if(!grid) return;
-    featuredGames.forEach(g=>{
+    const ring = document.getElementById('highlightsTrack');
+    const dotsWrap = document.getElementById('highlightsDots');
+    if(!ring || !featuredGames || !featuredGames.length) return;
+    const items = featuredGames;
+    const count = items.length;
+
+    // Coverflow tuning
+    const spacingX = 190;   // horizontal offset per step away from center
+    const spacingZ = 170;   // depth push-back per step
+    const angleY   = 55;    // degrees each side card rotates back
+    const maxVisible = 2;   // how many cards shown on each side
+
+    items.forEach((g,i)=>{
         const card = document.createElement('div');
-        card.className = 'highlight-card fade-in';
-        card.innerHTML = `<a href="${g.link}" aria-label="${g.title}"><img src="${g.image}" alt="${g.title}"><h3>${g.title}</h3></a>`;
-        grid.appendChild(card);
-        observer.observe(card);
+        card.className = 'hl3d-card';
+        card.dataset.index = i;
+        card.innerHTML = `<a href="${g.link}" aria-label="${g.title}"><img src="${g.image}" alt="${g.title}" draggable="false"><h3>${g.title}</h3></a>`;
+        ring.appendChild(card);
     });
+
+    // Build dots
+    if(dotsWrap){
+        items.forEach((_,i)=>{
+            const dot = document.createElement('button');
+            dot.className = 'hl3d-dot';
+            dot.dataset.index = i;
+            dot.setAttribute('aria-label','Go to highlight '+(i+1));
+            dotsWrap.appendChild(dot);
+        });
+    }
+
+    let current = 0;
+    const cards = ring.querySelectorAll('.hl3d-card');
+    const dots = dotsWrap ? dotsWrap.querySelectorAll('.hl3d-dot') : [];
+
+    // Shortest signed distance from the active card (wraps around)
+    function relOffset(i, active){
+        let d = i - active;
+        while(d >  count/2) d -= count;
+        while(d < -count/2) d += count;
+        return d;
+    }
+
+    function layout(active){
+        cards.forEach((c,i)=>{
+            const d = relOffset(i, active);
+            const ad = Math.abs(d);
+            if(ad > maxVisible){
+                c.style.opacity = 0;
+                c.style.pointerEvents = 'none';
+                c.style.transform = `translateX(${d<0?-1:1}px) translateZ(${-spacingZ*3}px)`;
+                return;
+            }
+            c.style.pointerEvents = '';
+            const x = d * spacingX;
+            const z = -Math.abs(d) * spacingZ;
+            const ry = -d * angleY;
+            const scale = 1 - ad * 0.06;
+            const op = 1 - ad * 0.22;
+            c.style.transform = `translateX(${x}px) translateZ(${z}px) rotateY(${ry}deg) scale(${scale})`;
+            c.style.opacity = op;
+            c.classList.toggle('is-active', i===((Math.round(active)%count)+count)%count);
+        });
+        const rounded = ((Math.round(active)%count)+count)%count;
+        dots.forEach((dd,i)=>dd.classList.toggle('is-active', i===rounded));
+    }
+
+    // Live fractional positioning (drag)
+    function rotateTo(idx){
+        layout(idx);
+    }
+
+    // Snap to a whole card index (wraps around)
+    function goTo(index){
+        const n = Math.round(index);
+        current = ((n % count) + count) % count;
+        layout(current);
+    }
+
+    ring._goTo = goTo;
+    ring._rotateTo = rotateTo;
+    ring._next = ()=>goTo(current+1);
+    ring._prev = ()=>goTo(current-1);
+    ring._current = ()=>current;
+    ring._setCurrent = (v)=>{ current=v; };
+    ring._count = count;
+
+    goTo(0);
 }
 
 function renderSchedule(schedule){
@@ -216,6 +308,94 @@ if(prevBtn && nextBtn && track){
     track.addEventListener('mouseleave', resumeCarousel);
     track.addEventListener('touchstart', pauseCarousel, {passive:true});
     track.addEventListener('touchend', resumeCarousel);
+}
+
+/* All Highlights 3D carousel — swipe/drag only (no buttons) */
+const hlRing = document.getElementById('highlightsTrack');
+const hlStage = document.querySelector('.hl3d-stage');
+const hlDots = document.getElementById('highlightsDots');
+
+if(hlRing && hlStage){
+    const ready = ()=> typeof hlRing._rotateTo === 'function';
+
+    // Dots still jump directly to a highlight
+    if(hlDots){
+        hlDots.addEventListener('click', (e)=>{
+            const dot = e.target.closest('.hl3d-dot');
+            if(!dot || !ready()) return;
+            hlRing._goTo(parseInt(dot.dataset.index,10)||0);
+        });
+    }
+
+    // Drag/swipe: cover stack follows the pointer, then snaps to nearest card
+    let isDown=false, startX=0, startIndex=0, moved=false, dragIndex=0;
+    const perPx = 1/160; // card index change per pixel dragged
+    const dragThreshold = 6;
+
+    const onDown=(x)=>{
+        if(!ready()) return;
+        isDown=true; moved=false;
+        startX=x;
+        startIndex=hlRing._current();
+        dragIndex=startIndex;
+        hlStage.classList.add('is-dragging');
+    };
+    const onMove=(x, e)=>{
+        if(!isDown || !ready()) return;
+        const dx = x - startX;
+        if(Math.abs(dx) > dragThreshold) moved=true;
+        // drag left -> next; drag right -> prev
+        dragIndex = startIndex - dx * perPx;
+        hlRing._rotateTo(dragIndex);
+        if(moved && e && e.cancelable) e.preventDefault();
+    };
+    const onUp=()=>{
+        if(!isDown) return;
+        isDown=false;
+        hlStage.classList.remove('is-dragging');
+        if(!ready()) return;
+        hlRing._goTo(dragIndex);
+    };
+
+    // Mouse drag
+    hlStage.addEventListener('mousedown',(e)=>{ e.preventDefault(); onDown(e.pageX); });
+    hlStage.addEventListener('click',(e)=>{ if(moved){ e.preventDefault(); e.stopPropagation(); } }, true);
+    window.addEventListener('mousemove',(e)=>onMove(e.pageX, e));
+    window.addEventListener('mouseup', onUp);
+
+    // Touch swipe
+    hlStage.addEventListener('touchstart',(e)=>onDown(e.touches[0].clientX),{passive:true});
+    hlStage.addEventListener('touchmove',(e)=>onMove(e.touches[0].clientX, e),{passive:false});
+    hlStage.addEventListener('touchend', onUp);
+
+    // Hover a side card -> auto-advance it to the front after a short delay
+    let hoverTimer = null;
+    const cancelHover = ()=>{ if(hoverTimer){ clearTimeout(hoverTimer); hoverTimer = null; } };
+
+    hlRing.querySelectorAll('.hl3d-card').forEach(card=>{
+        card.addEventListener('mouseenter', ()=>{
+            if(!ready() || moved || isDown) return;
+            const idx = parseInt(card.dataset.index,10);
+            if(isNaN(idx)) return;
+            // don't re-trigger if it's already the active card
+            if(idx === hlRing._current()) return;
+            cancelHover();
+            hoverTimer = setTimeout(()=>{
+                if(moved || isDown) return;
+                hlRing._goTo(idx);
+            }, 220);
+        });
+        card.addEventListener('mouseleave', cancelHover);
+    });
+
+    // Cancel any pending auto-advance while dragging/swiping
+    hlStage.addEventListener('mousedown', cancelHover);
+    hlStage.addEventListener('touchstart', cancelHover, {passive:true});
+
+    // Prevent a link from opening right after a drag
+    hlRing.querySelectorAll('a').forEach(a=>{
+        a.addEventListener('click',(e)=>{ if(moved){ e.preventDefault(); } });
+    });
 }
 
 /* Theme toggle (light/dark) */

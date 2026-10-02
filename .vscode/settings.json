@@ -1,3 +1,5 @@
 {
-    "livePreview.defaultPreviewPath": "/index.html"
+    "livePreview.defaultPreviewPath": "/index.html",
+    "chat.disableAIFeatures": false,
+    "claudeCodeChat.permissions.yoloMode": true
 }
