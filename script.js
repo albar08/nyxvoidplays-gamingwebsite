@@ -132,9 +132,9 @@ function renderHighlightsGrid(featuredGames){
     const count = items.length;
 
     // Coverflow tuning
-    const spacingX = 190;   // horizontal offset per step away from center
-    const spacingZ = 170;   // depth push-back per step
-    const angleY   = 55;    // degrees each side card rotates back
+    const spacingX = 245;   // horizontal offset per step away from center
+    const spacingZ = 220;   // depth push-back per step
+    const angleY   = 62;    // degrees each side card rotates back
     const maxVisible = 2;   // how many cards shown on each side
 
     items.forEach((g,i)=>{
@@ -182,8 +182,8 @@ function renderHighlightsGrid(featuredGames){
             const x = d * spacingX;
             const z = -Math.abs(d) * spacingZ;
             const ry = -d * angleY;
-            const scale = 1 - ad * 0.06;
-            const op = 1 - ad * 0.22;
+            const scale = 1 - ad * 0.05;
+            const op = 1 - ad * 0.18;
             c.style.transform = `translateX(${x}px) translateZ(${z}px) rotateY(${ry}deg) scale(${scale})`;
             c.style.opacity = op;
             c.classList.toggle('is-active', i===((Math.round(active)%count)+count)%count);

@@ -547,13 +547,13 @@ background:rgba(0,0,0,0.7);
 .hl3d-stage{
     position:relative;
     width:100%;
-    max-width:1000px;
-    height:320px;
+    max-width:1220px;
+    height:420px;
     margin:0 auto;
-    perspective:1300px;
+    perspective:1500px;
     perspective-origin:50% 50%;
     overflow:hidden;
-    border-radius:12px;
+    border-radius:14px;
     cursor:grab;
     touch-action:pan-y;
     -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 12%,#000 88%,transparent 100%);
@@ -570,20 +570,20 @@ background:rgba(0,0,0,0.7);
     position:absolute;
     top:50%;
     left:50%;
-    width:280px;
-    height:240px;
-    margin-top:-120px;
-    margin-left:-140px;
-    background:rgba(0,0,0,0.65);
-    border-radius:12px;
-    padding:10px;
+    width:360px;
+    height:300px;
+    margin-top:-150px;
+    margin-left:-180px;
+    background:rgba(0,0,0,0.68);
+    border-radius:14px;
+    padding:12px;
     box-sizing:border-box;
     text-align:center;
     display:flex;
     flex-direction:column;
     backface-visibility:hidden;
     transform-origin:center center;
-    transition:transform 0.55s cubic-bezier(0.25,0.8,0.35,1), box-shadow 0.4s ease, filter 0.4s ease, opacity 0.4s ease;
+    transition:transform 0.7s cubic-bezier(0.22,1,0.36,1), box-shadow 0.35s ease, filter 0.35s ease, opacity 0.35s ease;
     will-change:transform, opacity;
     filter:brightness(0.62);
     opacity:0.9;
@@ -592,29 +592,29 @@ background:rgba(0,0,0,0.7);
 .hl3d-card.is-active{
     filter:brightness(1);
     opacity:1;
-    box-shadow:0 14px 36px rgba(122,60,255,0.5);
+    box-shadow:0 18px 40px rgba(122,60,255,0.5);
     z-index:10;
 }
 .hl3d-card a{color:white;text-decoration:none;display:block;height:100%;display:flex;flex-direction:column}
 .hl3d-card img{
     width:100%;
-    height:180px;
+    height:210px;
     object-fit:contain;
     background:rgba(0,0,0,0.35);
-    border-radius:8px;
+    border-radius:10px;
     display:block;
     -webkit-user-drag:none;
 }
-.hl3d-card h3{margin-top:8px;font-size:0.85rem;line-height:1.2}
+.hl3d-card h3{margin-top:10px;font-size:0.92rem;line-height:1.2}
 .hl3d-dots{
     display:flex;
     justify-content:center;
     gap:8px;
-    margin-top:14px;
+    margin-top:16px;
 }
 .hl3d-dot{
-    width:8px;
-    height:8px;
+    width:9px;
+    height:9px;
     border-radius:50%;
     background:rgba(255,255,255,0.3);
     border:none;
@@ -624,7 +624,7 @@ background:rgba(0,0,0,0.7);
 }
 .hl3d-dot.is-active{
     background:#9d6cff;
-    transform:scale(1.3);
+    transform:scale(1.35);
 }
 
 /* Schedule */
