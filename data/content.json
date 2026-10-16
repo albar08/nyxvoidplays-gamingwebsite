@@ -5,11 +5,11 @@
     "facebook": 1500
   },
   "featuredGames": [
-    { "title": "Eudora Thumbnail", "image": "images/update/thumbnail/EudoraThumbnail.png", "link": "#" },
-    { "title": "Shadow Assassin", "image": "images/update/shadow-assassin.jpeg", "link": "#" },
-    { "title": "Cover Montage", "image": "images/update/nyxvoid-cover.png", "link": "#" },
-    { "title": "NyxVoid Logo", "image": "images/update/nyxvoid-logo.png", "link": "#" },
-    { "title": "Facebook Post", "image": "images/update/facebook-post.png", "link": "#" }
+    { "title": "Eudora Thumbnail", "image": "images/update/thumbnail/EudoraThumbnail.png", "link": "https://www.youtube.com/@philipinegamer0533" },
+    { "title": "Shadow Assassin", "image": "images/update/shadow-assassin.jpeg", "link": "https://tiktok.com/@nyxvoidplays" },
+    { "title": "Cover Montage", "image": "images/update/nyxvoid-cover.png", "link": "https://www.facebook.com/profile.php?id=61585765280956" },
+    { "title": "NyxVoid Logo", "image": "images/update/nyxvoid-logo.png", "link": "https://www.youtube.com/@philipinegamer0533" },
+    { "title": "Facebook Post", "image": "images/update/facebook-post.png", "link": "https://www.facebook.com/profile.php?id=61585765280956" }
   ],
   "updates": [
     { "title": "Eudora Hide In the Bush", "text": "Eudora lurking in the bush for the perfect ambush.", "video": "videos/eudora-hide-in-the-bush.mp4", "image": "images/update/thumbnail/EudoraThumbnail.png" },

@@ -3,187 +3,230 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NyxVoid Plays</title>
-    <meta name="description" content="NyxVoid Plays — Honor of Kings gameplay, ranked battles, and creator journey. Watch highlights and follow on YouTube, TikTok, and Facebook.">
+    <title>NyxVoid Plays | Gaming Highlights</title>
+    <meta name="description" content="NyxVoid Plays — gaming highlights, ranked battles, and creator journey. Watch content and follow the community on YouTube, TikTok, and Facebook.">
     <link rel="icon" type="image/png" href="images/update/nyxvoid-logo.png">
     <meta property="og:type" content="website">
     <meta property="og:title" content="NyxVoid Plays">
-    <meta property="og:description" content="Honor of Kings gameplay, ranked battles, and creator journey.">
+    <meta property="og:description" content="Gaming highlights, ranked battles, and creator journey.">
     <meta property="og:url" content="https://nyxvoidplays-gamingwebsite.netlify.app/">
     <meta property="og:image" content="https://nyxvoidplays-gamingwebsite.netlify.app/images/update/nyxvoid-cover.png">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="NyxVoid Plays">
-    <meta name="twitter:description" content="Honor of Kings gameplay, ranked battles, and creator journey.">
+    <meta name="twitter:description" content="Gaming highlights, ranked battles, and creator journey.">
     <meta name="twitter:image" content="https://nyxvoidplays-gamingwebsite.netlify.app/images/update/nyxvoid-cover.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/fontawesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/brands.min.css">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/fontawesome.min.css">
-    <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/brands.min.css">
   </head>
   <body>
-    <!-- Background Image -->
-    <div class="background"></div>
-    <!-- Animated Canvas -->
+    <div class="background-glow"></div>
     <canvas id="particles"></canvas>
-    <!-- NAVBAR -->
-    <nav>
-      <div class="logo-area">
-        <img src="images/update/nyxvoid-plays-new-logo.png" class="site-logo">
+
+    <header class="site-header">
+      <div class="brand">
+        <img src="images/update/nyxvoid-plays-new-logo.png" alt="NyxVoid Plays logo" class="brand-logo">
         <span>NyxVoid Plays</span>
       </div>
-        <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme">🌓</button>
-      <button class="hamburger" aria-label="Toggle menu">☰</button>
-      <div class="nav-links">
-        <button class="close-btn">×</button>
+
+      <nav class="primary-nav" aria-label="Main navigation">
         <a href="#home">Home</a>
+        <a href="#featured">Highlights</a>
         <a href="#updates">Updates</a>
         <a href="#schedule">Schedule</a>
-        <a href="#stats">Stats</a>
         <a href="#about">About</a>
-        <a href="#contact">Support</a>
+        <a href="#support">Support</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme" aria-pressed="false">☾</button>
+        <button class="menu-toggle" aria-label="Open menu" aria-expanded="false">☰</button>
       </div>
-    </nav>
-    <!-- HERO -->
-    <section id="home" class="hero">
-      <img src="images/update/nyxvoid-plays-new-logo.png" class="hero-logo">
-      <h1>NyxVoid Plays</h1>
-        <p>Honor of Kings Gameplay • Ranked Battles • Creator Journey</p>
-      <div class="social-buttons">
-        <a href="https://youtube.com/@philipinegamer0533" class="btn youtube" data-platform="youtube">
-        <i class="fab fa-youtube"></i> YouTube
-        </a>
-        <a href="https://tiktok.com/@nyxvoidplays" class="btn tiktok" data-platform="tiktok">
-        <i class="fab fa-tiktok"></i> TikTok
-        </a>
-        <a href="https://www.facebook.com/profile.php?id=61585765280956" class="btn facebook" data-platform="facebook">
-        <i class="fab fa-facebook"></i> Facebook
-        </a>
-      </div>
-    </section>
-    <!-- FEATURED GAMES -->
-    <section id="featured" class="section">
-      <h2>Featured Games</h2>
-      <div class="carousel" aria-label="Featured games carousel">
-        <button class="carousel-btn prev" aria-label="Previous">‹</button>
-        <div class="carousel-track" id="carouselTrack"></div>
-        <button class="carousel-btn next" aria-label="Next">›</button>
-      </div>
-      <h3 class="subsection-title">All Highlights</h3>
-      <div class="hl3d" aria-label="All highlights 3D carousel">
-        <div class="hl3d-stage">
-          <div class="hl3d-ring" id="highlightsTrack"></div>
+    </header>
+
+    <main>
+      <section id="home" class="hero section-shell">
+        <div class="hero-content">
+          <span class="eyebrow">Gaming • Ranked Battles • Creator Journey</span>
+          <img src="images/update/nyxvoid-plays-new-logo.png" alt="NyxVoid Plays hero logo" class="hero-logo">
+          <h1>NyxVoid Plays</h1>
+          <p class="hero-copy">Fast reactions. Smart plays. Real ranked grind. Follow the journey and catch the next highlight.</p>
+
+          <div class="hero-actions">
+            <a href="#featured" class="btn primary">Watch Highlights</a>
+            <a href="#support" class="btn secondary">Support the Channel</a>
+          </div>
+
+          <div class="hero-socials">
+            <a href="https://youtube.com/@philipinegamer0533" class="social-chip youtube" data-platform="youtube" aria-label="YouTube">
+              <i class="fab fa-youtube"></i>
+            </a>
+            <a href="https://tiktok.com/@nyxvoidplays" class="social-chip tiktok" data-platform="tiktok" aria-label="TikTok">
+              <i class="fab fa-tiktok"></i>
+            </a>
+            <a href="https://www.facebook.com/profile.php?id=61585765280956" class="social-chip facebook" data-platform="facebook" aria-label="Facebook">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://www.instagram.com/nyxvoidplays/" class="social-chip instagram" data-platform="instagram" aria-label="Instagram">
+              <i class="fab fa-instagram"></i>
+            </a>
+          </div>
         </div>
-      </div>
-      <div class="hl3d-dots" id="highlightsDots"></div>
-    </section>
-    <!-- CREATOR STATS -->
-    <section id="stats" class="section">
-      <h1>Creator Stats</h1>
-      <h2>Please do Follow, Like, And Share for More!</h2>
-      <div class="stats-container">
-          <div class="stat">
-          <i class="fab fa-youtube"></i>
-          <h3 id="ytCount">3</h3>
-          <p>YouTube Subscribers</p>
+
+        <div class="hero-panel">
+          <div class="panel-stat">
+            <span>Focus</span>
+            <strong>Gameplay</strong>
+          </div>
+          <div class="panel-stat">
+            <span>Community</span>
+            <strong>Ranked &amp; Highlights</strong>
+          </div>
+          <div class="panel-stat">
+            <span>Next drop</span>
+            <strong>Fresh gameplay</strong>
+          </div>
         </div>
-        <div class="stat">
-          <i class="fab fa-tiktok"></i>
-          <h3 id="ttCount">689</h3>
-          <p>TikTok Followers</p>
+      </section>
+
+      <section id="stats" class="section-shell stats-section">
+        <div class="section-heading">
+          <span class="eyebrow">Creator Stats</span>
+          <h2>Follow, like, and share for more content.</h2>
         </div>
-        <div class="stat">
-          <i class="fab fa-facebook"></i>
-          <h3 id="fbCount">1500</h3>
-          <p>Facebook Followers</p>
+
+        <div class="stats-grid">
+          <article class="stat-card">
+            <i class="fab fa-youtube"></i>
+            <h3 id="ytCount">3</h3>
+            <p>YouTube Subscribers</p>
+          </article>
+
+          <article class="stat-card">
+            <i class="fab fa-tiktok"></i>
+            <h3 id="ttCount">39</h3>
+            <p>TikTok Followers</p>
+          </article>
+
+          <article class="stat-card">
+            <i class="fab fa-facebook"></i>
+            <h3 id="fbCount">15</h3>
+            <p>Facebook Followers</p>
+          </article>
         </div>
-      </div>
-    </section>
-    <!-- UPDATES -->
-    <section id="updates" class="section">
-      <h2>Latest Updates</h2>
-      <div id="updatesContainer" class="updates-container"></div>
-    </section>
-    <!-- SCHEDULE -->
-    <section id="schedule" class="section">
-      <h2>Stream Schedule</h2>
-      <p class="schedule-note">Times are subject to change — follow the socials above for live announcements.</p>
-      <div id="scheduleContainer" class="schedule-list"></div>
-    </section>
-    <!-- STREAM -->
-    <section id="stream" class="section">
-      <h2>Featured Video</h2>
-      <div class="stream-embed">
-        <iframe id="liveEmbed" width="560" height="315"
-          src="https://www.youtube.com/watch?v=nQHnx7mB57c"
-          title="Featured video" frameborder="0" allowfullscreen></iframe>
-      </div>
-    </section>
+      </section>
 
-    <!-- ABOUT -->
-    <section id="about" class="section">
-      <h2>About Me</h2>
-      <p>
-        I'm NyxVoid, a passionate Honor of Kings player sharing ranked gameplay,
-        hero builds, and epic gaming moments with the community.
-      </p>
-      <div class="social-links">
-        <a href="https://www.facebook.com/profile.php?id=61585765280956" class="facebook" aria-label="Facebook" data-platform="facebook">
-        <i class="fab fa-facebook-f"></i>
-        </a>
-        <a href="https://tiktok.com/@nyxvoidplays" class="tiktok" aria-label="TikTok" data-platform="tiktok">
-        <i class="fab fa-tiktok"></i>
-        </a>
-        <a href="https://www.instagram.com/nyxvoidplays/" class="instagram" aria-label="Instagram" data-platform="instagram">
-        <i class="fab fa-instagram"></i>
-        </a>
-        <a href="https://www.youtube.com/@philipinegamer0533" class="youtube" aria-label="YouTube" data-platform="youtube">
-        <i class="fab fa-youtube"></i>
-        </a>
-        <a href="https://wa.me/+639461668759" class="whatsapp" aria-label="WhatsApp" data-platform="whatsapp">
-        <i class="fab fa-whatsapp"></i>
-        </a>
-      </div>
-    </section>
+      <section id="featured" class="section-shell">
+        <div class="section-heading">
+          <span class="eyebrow">Featured Highlights</span>
+          <h2>Epic moments, hero plays, and community clips.</h2>
+        </div>
 
-    <!-- SHOUTOUTS -->
-    <section id="shoutouts" class="section">
-      <h2>Shoutouts</h2>
-      <p class="schedule-note">Sample layout — swap these for real fan comments or Discord messages.</p>
-      <div id="testimonialsGrid" class="testimonials-grid"></div>
-    </section>
+        <div id="featuredGrid" class="featured-grid"></div>
+      </section>
 
-    <!-- COMMUNITY -->
-    <section id="community" class="section community-section">
-      <h2>Community</h2>
-      <p>Join our Discord to chat, see updates, and connect with other fans.</p>
-      <button class="btn discord" disabled aria-disabled="true" title="Discord invite coming soon">Discord — Coming Soon</button>
-    </section>
+      <section id="updates" class="section-shell">
+        <div class="section-heading">
+          <span class="eyebrow">Latest Updates</span>
+          <h2>Fresh content from the battlefield.</h2>
+        </div>
 
-    <!-- NEWSLETTER -->
-    <section id="newsletter" class="section">
-      <h2>Stay Updated</h2>
-      <p class="schedule-note">Get an email when there's a new highlight or announcement.</p>
-      <form name="newsletter" method="POST" netlify class="newsletter-form">
-        <input type="email" name="email" placeholder="Your Email" required>
-        <button type="submit">Subscribe</button>
-      </form>
-    </section>
+        <div id="updatesContainer" class="updates-grid"></div>
+      </section>
 
-    <!-- CONTACT -->
-    <section id="contact" class="section">
-      <h2>Support</h2>
-      <form name="contact" method="POST" netlify>
-        <input type="text" name="name" placeholder="Your Name" required>
-        <input type="email" name="email" placeholder="Your Email" required>
-        <textarea name="message" placeholder="Message"></textarea>
-        <button type="submit">Send Message</button>
-      </form>
-    </section>
-    <footer>
-    <p>© <span id="copyrightYear">2025</span> NyxVoid Plays</p>
+      <section id="schedule" class="section-shell">
+        <div class="section-heading">
+          <span class="eyebrow">Stream Schedule</span>
+          <h2>Catch the next live session.</h2>
+        </div>
+
+        <p class="schedule-note">Times may shift based on events and community announcements. Follow the socials for the latest updates.</p>
+        <div id="scheduleContainer" class="schedule-list"></div>
+      </section>
+
+      <section id="stream" class="section-shell stream-section">
+        <div class="section-heading">
+          <span class="eyebrow">Featured Video</span>
+          <h2>Current highlight reel.</h2>
+        </div>
+
+        <div class="stream-frame">
+          <iframe id="liveEmbed" src="https://www.youtube.com/embed/nQHnx7mB57c" title="Featured video" allowfullscreen></iframe>
+        </div>
+      </section>
+
+      <section id="about" class="section-shell about-section">
+        <div class="section-heading">
+          <span class="eyebrow">About Me</span>
+          <h2>Built for the grind, the play, and the community.</h2>
+        </div>
+
+        <div class="about-grid">
+          <div class="about-copy">
+            <p>I'm NyxVoid, a passionate gamer sharing ranked battles, clutch moments, and creator journey updates with the community.</p>
+            <p>Whether it's a perfect rotation, a risky flank, or a full team comeback, the goal is always the same: bring energy, skill, and fun to every session.</p>
+          </div>
+
+          <div class="about-panel">
+            <div class="social-links">
+              <a href="https://www.facebook.com/profile.php?id=61585765280956" class="facebook" aria-label="Facebook" data-platform="facebook"><i class="fab fa-facebook-f"></i></a>
+              <a href="https://tiktok.com/@nyxvoidplays" class="tiktok" aria-label="TikTok" data-platform="tiktok"><i class="fab fa-tiktok"></i></a>
+              <a href="https://www.instagram.com/nyxvoidplays/" class="instagram" aria-label="Instagram" data-platform="instagram"><i class="fab fa-instagram"></i></a>
+              <a href="https://www.youtube.com/@philipinegamer0533" class="youtube" aria-label="YouTube" data-platform="youtube"><i class="fab fa-youtube"></i></a>
+              <a href="https://wa.me/+639461668759" class="whatsapp" aria-label="WhatsApp" data-platform="whatsapp"><i class="fab fa-whatsapp"></i></a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="community" class="section-shell community-section">
+        <div class="section-heading">
+          <span class="eyebrow">Community</span>
+          <h2>Join the squad.</h2>
+        </div>
+
+        <div class="community-card">
+          <div class="discord-badge"><i class="fab fa-discord"></i></div>
+          <div>
+            <h3>Discord coming soon</h3>
+            <p>Chat, share clips, and stay in the loop for new drops and match nights.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="newsletter" class="section-shell newsletter-section">
+        <div class="section-heading narrow">
+          <span class="eyebrow">Newsletter</span>
+          <h2>Stay updated on new uploads and highlights.</h2>
+        </div>
+
+        <form name="newsletter" method="POST" netlify class="newsletter-form">
+          <input type="email" name="email" placeholder="Your Email" aria-label="Email" required>
+          <button type="submit">Subscribe</button>
+        </form>
+      </section>
+
+      <section id="support" class="section-shell support-section">
+        <div class="section-heading narrow">
+          <span class="eyebrow">Support</span>
+          <h2>Send a message.</h2>
+        </div>
+
+        <form name="contact" method="POST" netlify class="contact-form">
+          <div class="input-grid">
+            <input type="text" name="name" placeholder="Your Name" aria-label="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" aria-label="Your Email" required>
+          </div>
+          <textarea name="message" placeholder="Message" aria-label="Message"></textarea>
+          <button type="submit">Send Message</button>
+        </form>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>© <span id="copyrightYear">2026</span> NyxVoid Plays</p>
     </footer>
-    <script src="updates.js"></script>
+
     <script src="script.js"></script>
   </body>
 </html>

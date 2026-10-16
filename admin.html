@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NyxVoid Plays Admin</title>
+    <style>
+      :root {
+        --bg: #0b1020;
+        --panel: #121a2a;
+        --panel-2: #1a2438;
+        --text: #edf2ff;
+        --muted: #a7b2c7;
+        --primary: #7a3cff;
+        --primary-soft: rgba(122, 60, 255, 0.12);
+        --danger: #ff667a;
+        --success: #25c18d;
+        --border: rgba(255,255,255,0.08);
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(180deg, #0b1020 0%, #111827 100%);
+        color: var(--text);
+      }
+      .wrap {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 32px 20px 80px;
+      }
+      h1 { margin-bottom: 8px; }
+      .muted { color: var(--muted); }
+      .topbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px;
+        margin-bottom: 24px;
+      }
+      .panel {
+        background: rgba(18,26,42,0.9);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 20px;
+        box-shadow: 0 18px 36px rgba(0,0,0,0.25);
+      }
+      .login-box {
+        max-width: 500px;
+        margin: 60px auto 0;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+      }
+      label {
+        display: block;
+        margin: 0 0 10px;
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+      input, textarea, select, button {
+        width: 100%;
+        border-radius: 10px;
+        border: 1px solid var(--border);
+        background: rgba(255,255,255,0.02);
+        color: var(--text);
+        padding: 12px 14px;
+        font-size: 1rem;
+      }
+      input[type="file"] {
+        padding: 10px;
+      }
+      textarea {
+        min-height: 120px;
+        resize: vertical;
+      }
+      button {
+        cursor: pointer;
+        background: var(--primary);
+        border: none;
+        font-weight: 700;
+      }
+      button.secondary {
+        background: transparent;
+        border: 1px solid var(--border);
+      }
+      button.danger {
+        background: var(--danger);
+      }
+      .hidden { display: none !important; }
+      .config-box {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        margin-bottom: 20px;
+      }
+      .status {
+        margin-top: 10px;
+        padding: 10px 12px;
+        border-radius: 10px;
+        font-size: 0.9rem;
+        border: 1px solid var(--border);
+        background: rgba(255,255,255,0.02);
+      }
+      .status.success { border-color: rgba(37,193,141,0.4); color: #b5f0db; }
+      .status.error { border-color: rgba(255,102,122,0.4); color: #ffc8d0; }
+      .tabs {
+        display: flex;
+        gap: 12px;
+        margin: 18px 0 20px;
+      }
+      .tab-btn {
+        background: transparent;
+        border: 1px solid var(--border);
+        width: auto;
+        padding: 10px 18px;
+      }
+      .tab-btn.active {
+        background: var(--primary-soft);
+        border-color: rgba(122,60,255,0.4);
+      }
+      .items-list {
+        display: grid;
+        gap: 12px;
+        margin-top: 20px;
+      }
+      .item-card {
+        background: rgba(255,255,255,0.02);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 16px;
+        display: flex;
+        justify-content: space-between;
+        gap: 14px;
+      }
+      .item-actions {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      .item-actions button {
+        width: auto;
+        padding: 10px 14px;
+      }
+      .mt-12 { margin-top: 12px; }
+      .small { font-size: 0.85rem; }
+      @media (max-width: 860px) {
+        .grid, .config-box {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="topbar">
+        <div>
+          <h1>NyxVoid Plays Admin</h1>
+          <div class="muted">Content manager for highlights and updates</div>
+        </div>
+        <button id="logoutBtn" class="secondary hidden">Log out</button>
+      </div>
+
+      <div id="configPanel" class="panel">
+        <h3>Supabase config</h3>
+        <div class="config-box">
+          <div>
+            <label>Project URL</label>
+            <input id="supabaseUrl" type="text" placeholder="https://xxxxx.supabase.co" />
+          </div>
+          <div>
+            <label>Anon key</label>
+            <input id="supabaseKey" type="text" placeholder="Paste your anon public key" />
+          </div>
+        </div>
+        <button id="saveConfigBtn">Save config</button>
+        <div id="configStatus" class="status hidden"></div>
+      </div>
+
+      <div id="loginPanel" class="panel login-box hidden">
+        <h3>Admin login</h3>
+        <form id="loginForm">
+          <label>Email
+            <input id="loginEmail" type="email" placeholder="admin@example.com" required />
+          </label>
+          <label>Password
+            <input id="loginPassword" type="password" placeholder="Password" required />
+          </label>
+          <button type="submit">Login</button>
+        </form>
+        <div id="loginStatus" class="status hidden"></div>
+      </div>
+
+      <div id="dashboardPanel" class="hidden">
+        <div class="tabs">
+          <button class="tab-btn active" data-tab="highlights">Highlights</button>
+          <button class="tab-btn" data-tab="updates">Updates</button>
+        </div>
+
+        <div id="highlightsTab" class="panel">
+          <h3>Add / edit highlight</h3>
+          <form id="highlightForm">
+            <input id="highlightId" type="hidden" />
+            <div class="grid">
+              <div>
+                <label>Title
+                  <input id="highlightTitle" type="text" required />
+                </label>
+              </div>
+              <div>
+                <label>Link
+                  <input id="highlightLink" type="text" placeholder="# or external URL" />
+                </label>
+              </div>
+            </div>
+            <div class="grid">
+              <div>
+                <label>Image URL
+                  <input id="highlightImageUrl" type="text" placeholder="https://..." />
+                </label>
+              </div>
+              <div>
+                <label>Sort order
+                  <input id="highlightOrder" type="number" value="1" min="1" />
+                </label>
+              </div>
+            </div>
+            <div>
+              <label>Upload image file
+                <input id="highlightImageFile" type="file" accept="image/*" />
+              </label>
+            </div>
+            <div class="item-actions mt-12">
+              <button type="submit">Save highlight</button>
+              <button type="button" class="secondary" id="resetHighlightForm">Reset</button>
+            </div>
+          </form>
+          <div id="highlightsList" class="items-list"></div>
+        </div>
+
+        <div id="updatesTab" class="panel hidden">
+          <h3>Add / edit update</h3>
+          <form id="updateForm">
+            <input id="updateId" type="hidden" />
+            <div class="grid">
+              <div>
+                <label>Title
+                  <input id="updateTitle" type="text" required />
+                </label>
+              </div>
+              <div>
+                <label>Type
+                  <select id="updateType">
+                    <option value="video">Video</option>
+                    <option value="image">Image</option>
+                  </select>
+                </label>
+              </div>
+            </div>
+            <label>Text
+              <textarea id="updateText" required></textarea>
+            </label>
+            <div class="grid">
+              <div>
+                <label>Image URL
+                  <input id="updateImageUrl" type="text" placeholder="https://..." />
+                </label>
+              </div>
+              <div>
+                <label>Video URL
+                  <input id="updateVideoUrl" type="text" placeholder="https://... or /videos/..." />
+                </label>
+              </div>
+            </div>
+            <div class="grid">
+              <div>
+                <label>Upload image file
+                  <input id="updateImageFile" type="file" accept="image/*" />
+                </label>
+              </div>
+              <div>
+                <label>Upload video file
+                  <input id="updateVideoFile" type="file" accept="video/*" />
+                </label>
+              </div>
+            </div>
+            <div class="item-actions mt-12">
+              <button type="submit">Save update</button>
+              <button type="button" class="secondary" id="resetUpdateForm">Reset</button>
+            </div>
+          </form>
+          <div id="updatesList" class="items-list"></div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="./admin.js"></script>
+  </body>
+</html>

@@ -11,6 +11,8 @@ function pauseOtherVideos(except){
 
 function renderUpdates(updates){
 
+container.innerHTML = '';
+
 updates.forEach(update=>{
 
 const card=document.createElement("div");
@@ -84,6 +86,11 @@ container.appendChild(card);
 });
 
 }
+
+document.addEventListener('supabase-updates-loaded', (event) => {
+  const rows = event.detail || [];
+  if(rows.length) renderUpdates(rows);
+});
 
 fetch('data/content.json')
 .then(res=>res.json())
