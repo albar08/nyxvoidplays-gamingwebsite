@@ -139,15 +139,34 @@ body[data-theme="light"] .site-header {
 
 .primary-nav a {
   position: relative;
-  transition: color 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border-radius: 12px;
+  color: var(--muted);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition: transform 0.22s ease, color 0.22s ease, background 0.22s ease, box-shadow 0.22s ease, padding 0.22s ease;
+}
+
+.primary-nav a::before {
+  content: '→';
+  position: absolute;
+  left: 10px;
+  opacity: 0;
+  transform: translateX(-10px);
+  color: var(--primary);
+  transition: opacity 0.2s ease, transform 0.25s ease;
 }
 
 .primary-nav a::after {
   content: '';
   position: absolute;
-  left: 0;
-  bottom: -8px;
-  width: 100%;
+  left: 10px;
+  right: 10px;
+  bottom: -6px;
   height: 2px;
   background: linear-gradient(90deg, var(--primary), var(--secondary));
   transform: scaleX(0);
@@ -158,6 +177,16 @@ body[data-theme="light"] .site-header {
 .primary-nav a:hover,
 .primary-nav a:focus-visible {
   color: var(--text);
+  background: rgba(255, 255, 255, 0.04);
+  box-shadow: inset 0 0 0 1px rgba(138, 92, 255, 0.3), 0 10px 20px rgba(138, 92, 255, 0.12);
+  transform: translateY(-2px);
+  padding-left: 26px;
+}
+
+.primary-nav a:hover::before,
+.primary-nav a:focus-visible::before {
+  opacity: 1;
+  transform: translateX(0);
 }
 
 .primary-nav a:hover::after,
@@ -436,7 +465,7 @@ body[data-theme="light"] .eyebrow {
 
 .featured-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 20px;
   justify-content: center;
   align-items: stretch;
@@ -480,8 +509,10 @@ body[data-theme="light"] .eyebrow {
 
 .updates-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 20px;
+  width: min(100%, 980px);
+  margin: 0 auto;
 }
 
 .update-card {
@@ -491,6 +522,7 @@ body[data-theme="light"] .eyebrow {
   border-radius: 20px;
   padding: 18px;
   overflow: hidden;
+  min-width: 0;
 }
 
 .update-card img,
@@ -692,11 +724,15 @@ body[data-theme="light"] .eyebrow {
 
 @media (max-width: 900px) {
   .featured-grid {
+    grid-template-columns: repeat(2, minmax(200px, 1fr));
+    width: min(100%, 760px);
+  }
+
+  .updates-grid {
     grid-template-columns: repeat(2, minmax(220px, 1fr));
     width: min(100%, 760px);
   }
 
-  .updates-grid,
   .stats-grid,
   .about-grid,
   .input-grid {
@@ -719,8 +755,8 @@ body[data-theme="light"] .eyebrow {
     left: 0;
     display: none;
     flex-direction: column;
-    align-items: flex-start;
-    gap: 14px;
+    align-items: stretch;
+    gap: 10px;
     padding: 18px 20px;
     background: rgba(12, 15, 25, 0.96);
     border: 1px solid var(--border);
@@ -736,6 +772,18 @@ body[data-theme="light"] .eyebrow {
     display: flex;
   }
 
+  .primary-nav a {
+    width: 100%;
+    justify-content: flex-start;
+    padding: 12px 14px 12px 26px;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    background: rgba(255, 255, 255, 0.02);
+  }
+
+  .primary-nav a::before {
+    left: 14px;
+  }
+
   .menu-toggle {
     display: inline-flex;
     align-items: center;
@@ -744,21 +792,63 @@ body[data-theme="light"] .eyebrow {
 }
 
 @media (max-width: 600px) {
-  .featured-grid {
-    grid-template-columns: 1fr;
+  html,
+  body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  .featured-grid,
+  .updates-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     width: min(100%, 420px);
   }
 
+  .site-header,
+  main {
+    width: calc(100% - 16px);
+    max-width: 100%;
+  }
+
   .site-header {
-    padding: 14px 16px;
+    padding: 12px 14px;
+    gap: 12px;
   }
 
   .brand {
     font-size: 0.98rem;
+    min-width: 0;
+  }
+
+  .brand span {
+    white-space: nowrap;
   }
 
   .section-shell {
-    padding: 36px 18px;
+    padding: 28px 14px;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .hero {
+    padding: 24px 14px;
+  }
+
+  .hero-content {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.2rem, 9vw, 3.1rem);
+    line-height: 1.08;
+    word-break: break-word;
+  }
+
+  .hero-copy {
+    max-width: 100%;
+    font-size: 0.96rem;
   }
 
   .hero-actions {
@@ -776,65 +866,48 @@ body[data-theme="light"] .eyebrow {
   }
 }
 
+@media (max-width: 420px) {
+  .featured-grid,
+  .updates-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .brand {
+    font-size: 0.82rem;
+  }
+
+  .brand-logo {
+    width: 48px;
+    height: 48px;
+  }
+}
+
 /* updates */
-/* Updates: Horizontal scroll remains, but ensure cards fit */
+/* Keep update cards responsive instead of forcing a fixed-width horizontal scroll. */
 
-.updates-container{
-display:flex;
-gap:20px;
-overflow-x:auto;
-padding:20px;
-scroll-behavior:smooth;
--webkit-overflow-scrolling:touch;
-scroll-snap-type:x mandatory;
-scrollbar-width:none;
--ms-overflow-style:none;
-}
-/* Hide the scrollbar in Chromium/WebKit browsers */
-.updates-container::-webkit-scrollbar{
-display:none;
-width:0;
-height:0;
+.update-card {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
 }
 
-.update-card{
-background:rgba(0,0,0,0.6);
-padding:20px;
-border-radius:10px;
-flex:0 0 280px;
-width:280px;
-min-width:280px;
-box-sizing:border-box;
-position:relative;
-display:flex;
-flex-direction:column;
-scroll-snap-align:start;
-}
-
-/* Equal-size media frames inside update cards */
 .update-card img,
 .update-card video,
-.update-card iframe{
-width:100%;
-height:180px;
-object-fit:cover;
-border:none;
-border-radius:6px;
-margin-top:10px;
-display:block;
+.update-card iframe {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border: none;
+  border-radius: 6px;
+  margin-top: 10px;
+  display: block;
 }
 
-.update-card img{
-width:100%;
-border-radius:6px;
-margin-top:10px;
-}
-
-.update-close{
-position:absolute;
-top:8px;
-right:10px;
-cursor:pointer;
+.update-close {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  cursor: pointer;
 }
 
 /* SOCIAL LINKS */
